@@ -18,11 +18,8 @@ export const getUserById = async (id: string) => {
 }
 
 export const getUsers = async () => {
-  console.log('getUsers')
   const cookieHandler = cookies()
-
   const jwt = cookieHandler.get('jwt')
-  console.log(jwt)
 
   if (jwt !== undefined) {
     const response: Users = await axios.get('http://localhost:1337/api/users', {
@@ -30,8 +27,6 @@ export const getUsers = async () => {
         Cookie: `jwt=${jwt.value}`,
       },
     })
-
-    console.log(response.data)
 
     return response.data
   }

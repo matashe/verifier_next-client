@@ -51,3 +51,20 @@ export const createSession = async (email: string, password: string) => {
     throw new Error(error.message)
   }
 }
+
+export const deleteSession = async () => {
+  // create URL
+  const endpoint =
+    process.env.NEXT_ENV === 'development'
+      ? process.env.DEV_SERVER_ENDPOINT
+      : process.env.SERVER_ENDPOINT
+
+  const url = new URL('/api/sessions', endpoint)
+
+  try {
+    // send request
+    const res = await axios.delete(url.toString(), {})
+  } catch (error: any) {
+    throw new Error(error.message)
+  }
+}
